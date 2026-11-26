@@ -1,0 +1,15 @@
+0:00 Why the death whistle screams
+0:06 The discovery
+0:20 The sound
+0:34 The instrument
+0:50 How it works
+1:09 How we simulated it
+1:26 The simulation, 1,600 times slower
+1:46 One cycle of the oscillation
+2:02 Where the sound is born
+2:17 Blow harder, higher pitch
+2:33 The real whistle
+2:50 Why it sounds like a scream
+3:09 Key findings
+3:24 For experts
+3:37 Credits

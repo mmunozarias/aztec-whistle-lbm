@@ -1,0 +1,331 @@
+{
+  "w100_harder": {
+    "fs": 48000,
+    "duration_s": 42.06,
+    "peak_dbfs": -0.59,
+    "noise_floor_dbfs": -78.0,
+    "n": 7,
+    "f_low_mean": 1410,
+    "f_low_sd": 20,
+    "f_high_mean": 2772,
+    "f_high_sd": 93,
+    "ratio_mean": 1.966,
+    "ratio_sd": 0.046,
+    "blows": [
+      {
+        "t0": 6.7,
+        "dur": 1.75,
+        "rms_dbfs": -10.7,
+        "f_low": 1382.8,
+        "f_high": 2610.4
+      },
+      {
+        "t0": 10.95,
+        "dur": 2.05,
+        "rms_dbfs": -11.3,
+        "f_low": 1409.2,
+        "f_high": 2774.4
+      },
+      {
+        "t0": 15.9,
+        "dur": 2.15,
+        "rms_dbfs": -11.2,
+        "f_low": 1415.0,
+        "f_high": 2774.4
+      },
+      {
+        "t0": 20.75,
+        "dur": 2.2,
+        "rms_dbfs": -11.3,
+        "f_low": 1385.7,
+        "f_high": 2768.6
+      },
+      {
+        "t0": 25.85,
+        "dur": 2.25,
+        "rms_dbfs": -11.5,
+        "f_low": 1438.5,
+        "f_high": 2932.6
+      },
+      {
+        "t0": 30.95,
+        "dur": 2.6,
+        "rms_dbfs": -11.4,
+        "f_low": 1418.0,
+        "f_high": 2771.5
+      },
+      {
+        "t0": 36.65,
+        "dur": 2.5,
+        "rms_dbfs": -11.4,
+        "f_low": 1418.0,
+        "f_high": 2771.5
+      }
+    ]
+  },
+  "w100_pos1": {
+    "fs": 48000,
+    "duration_s": 43.84,
+    "peak_dbfs": -6.59,
+    "noise_floor_dbfs": -82.9,
+    "n": 6,
+    "f_low_mean": 1249,
+    "f_low_sd": 10,
+    "f_high_mean": 2480,
+    "f_high_sd": 130,
+    "ratio_mean": 1.986,
+    "ratio_sd": 0.092,
+    "blows": [
+      {
+        "t0": 6.75,
+        "dur": 2.35,
+        "rms_dbfs": -17.6,
+        "f_low": 1256.8,
+        "f_high": 2575.2
+      },
+      {
+        "t0": 12.15,
+        "dur": 2.85,
+        "rms_dbfs": -18.7,
+        "f_low": 1262.7,
+        "f_high": 2575.2
+      },
+      {
+        "t0": 18.3,
+        "dur": 3.05,
+        "rms_dbfs": -18.6,
+        "f_low": 1251.0,
+        "f_high": 2598.6
+      },
+      {
+        "t0": 24.85,
+        "dur": 3.4,
+        "rms_dbfs": -18.9,
+        "f_low": 1242.2,
+        "f_high": 2490.2
+      },
+      {
+        "t0": 31.15,
+        "dur": 3.45,
+        "rms_dbfs": -19.2,
+        "f_low": 1242.2,
+        "f_high": 2302.7
+      },
+      {
+        "t0": 37.4,
+        "dur": 3.6,
+        "rms_dbfs": -19.0,
+        "f_low": 1236.3,
+        "f_high": 2337.9
+      }
+    ]
+  },
+  "w100_pos2": {
+    "fs": 48000,
+    "duration_s": 57.89,
+    "peak_dbfs": -10.29,
+    "noise_floor_dbfs": -82.6,
+    "n": 8,
+    "f_low_mean": 1229,
+    "f_low_sd": 13,
+    "f_high_mean": 2445,
+    "f_high_sd": 38,
+    "ratio_mean": 1.989,
+    "ratio_sd": 0.025,
+    "blows": [
+      {
+        "t0": 6.35,
+        "dur": 2.75,
+        "rms_dbfs": -22.8,
+        "f_low": 1221.7,
+        "f_high": 2399.4
+      },
+      {
+        "t0": 12.4,
+        "dur": 3.25,
+        "rms_dbfs": -22.0,
+        "f_low": 1218.8,
+        "f_high": 2399.4
+      },
+      {
+        "t0": 19.0,
+        "dur": 3.4,
+        "rms_dbfs": -21.9,
+        "f_low": 1221.7,
+        "f_high": 2399.4
+      },
+      {
+        "t0": 25.4,
+        "dur": 3.6,
+        "rms_dbfs": -21.5,
+        "f_low": 1221.7,
+        "f_high": 2469.7
+      },
+      {
+        "t0": 31.8,
+        "dur": 3.7,
+        "rms_dbfs": -21.3,
+        "f_low": 1224.6,
+        "f_high": 2466.8
+      },
+      {
+        "t0": 38.35,
+        "dur": 3.6,
+        "rms_dbfs": -21.3,
+        "f_low": 1230.5,
+        "f_high": 2481.4
+      },
+      {
+        "t0": 44.65,
+        "dur": 3.35,
+        "rms_dbfs": -20.8,
+        "f_low": 1239.3,
+        "f_high": 2469.7
+      },
+      {
+        "t0": 50.45,
+        "dur": 3.4,
+        "rms_dbfs": -20.8,
+        "f_low": 1256.8,
+        "f_high": 2475.6
+      }
+    ]
+  },
+  "w125_pos1": {
+    "fs": 48000,
+    "duration_s": 50.5,
+    "peak_dbfs": -2.75,
+    "noise_floor_dbfs": -83.0,
+    "n": 7,
+    "f_low_mean": 1398,
+    "f_low_sd": 131,
+    "f_high_mean": 2908,
+    "f_high_sd": 358,
+    "ratio_mean": 2.075,
+    "ratio_sd": 0.1,
+    "blows": [
+      {
+        "t0": 6.4,
+        "dur": 2.55,
+        "rms_dbfs": -13.9,
+        "f_low": 1587.9,
+        "f_high": 3263.7
+      },
+      {
+        "t0": 12.3,
+        "dur": 2.75,
+        "rms_dbfs": -14.8,
+        "f_low": 1365.2,
+        "f_high": 2926.8
+      },
+      {
+        "t0": 18.85,
+        "dur": 2.9,
+        "rms_dbfs": -14.6,
+        "f_low": 1391.6,
+        "f_high": 2953.1
+      },
+      {
+        "t0": 24.8,
+        "dur": 2.9,
+        "rms_dbfs": -14.8,
+        "f_low": 1151.4,
+        "f_high": 2138.7
+      },
+      {
+        "t0": 31.15,
+        "dur": 3.2,
+        "rms_dbfs": -15.2,
+        "f_low": 1441.4,
+        "f_high": 3076.2
+      },
+      {
+        "t0": 37.45,
+        "dur": 3.05,
+        "rms_dbfs": -15.1,
+        "f_low": 1447.3,
+        "f_high": 3049.8
+      },
+      {
+        "t0": 43.3,
+        "dur": 3.25,
+        "rms_dbfs": -15.2,
+        "f_low": 1403.3,
+        "f_high": 2950.2
+      }
+    ]
+  },
+  "w125_pos2": {
+    "fs": 48000,
+    "duration_s": 52.73,
+    "peak_dbfs": -4.4,
+    "noise_floor_dbfs": -83.5,
+    "n": 7,
+    "f_low_mean": 1563,
+    "f_low_sd": 12,
+    "f_high_mean": 3250,
+    "f_high_sd": 68,
+    "ratio_mean": 2.079,
+    "ratio_sd": 0.038,
+    "blows": [
+      {
+        "t0": 6.85,
+        "dur": 3.0,
+        "rms_dbfs": -17.7,
+        "f_low": 1561.5,
+        "f_high": 3281.2
+      },
+      {
+        "t0": 13.3,
+        "dur": 3.05,
+        "rms_dbfs": -18.2,
+        "f_low": 1567.4,
+        "f_high": 3252.0
+      },
+      {
+        "t0": 19.5,
+        "dur": 3.25,
+        "rms_dbfs": -18.6,
+        "f_low": 1567.4,
+        "f_high": 3254.9
+      },
+      {
+        "t0": 26.1,
+        "dur": 3.7,
+        "rms_dbfs": -18.4,
+        "f_low": 1573.2,
+        "f_high": 3380.9
+      },
+      {
+        "t0": 32.95,
+        "dur": 3.6,
+        "rms_dbfs": -19.3,
+        "f_low": 1538.1,
+        "f_high": 3187.5
+      },
+      {
+        "t0": 39.6,
+        "dur": 3.75,
+        "rms_dbfs": -18.9,
+        "f_low": 1570.3,
+        "f_high": 3193.4
+      },
+      {
+        "t0": 46.05,
+        "dur": 4.05,
+        "rms_dbfs": -19.2,
+        "f_low": 1564.5,
+        "f_high": 3202.1
+      }
+    ]
+  },
+  "w100_pooled": {
+    "n": 14,
+    "f_low_mean": 1238,
+    "f_low_sd": 15,
+    "f_high_mean": 2460,
+    "f_high_sd": 87,
+    "ratio_mean": 1.988,
+    "ratio_sd": 0.06
+  }
+}

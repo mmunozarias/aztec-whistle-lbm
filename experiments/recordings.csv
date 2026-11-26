@@ -1,0 +1,6 @@
+file,model_scale_pct,position,blowing,input_volume_pct,date,notes
+w100_pos1.wav,100,1,by mouth (pressure not measured),30,2026-11-16,6 blows
+w100_pos2.wav,100,2,by mouth (pressure not measured),30,2026-11-16,8 blows; set-up moved in the room
+w125_pos1.wav,125,1,by mouth (pressure not measured),30,2026-11-16,7 blows
+w125_pos2.wav,125,2,by mouth (pressure not measured),30,2026-11-16,7 blows; set-up moved in the room
+w100_harder.wav,100,1,by mouth with more effort (pressure not measured),45,2026-11-16,7 blows; louder blowing

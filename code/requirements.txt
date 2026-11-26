@@ -1,0 +1,8 @@
+numpy>=1.26
+scipy>=1.11
+numba>=0.59
+trimesh>=4.0
+libigl>=2.5
+scikit-image>=0.22
+matplotlib>=3.8
+soundfile

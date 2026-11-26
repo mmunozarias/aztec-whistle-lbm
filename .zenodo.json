@@ -1,0 +1,11 @@
+{
+  "title": "aztec-whistle-lbm: 3D lattice Boltzmann simulation of an Aztec skull whistle",
+  "upload_type": "software",
+  "description": "Three-dimensional lattice Boltzmann large-eddy simulation (D3Q19, regularized BGK, Smagorinsky model) of the airflow and sound of a 3D-printable Aztec skull-whistle replica, with grid-convergence, blowing-pressure and sound-quality analyses, SLURM job scripts, the figures and tables of the accompanying paper, and recordings of a 3D-printed model. The raw simulation output, the simulated sound and the explainer video are archived in a separate Zenodo dataset.",
+  "creators": [
+    {"name": "Muñoz-Arias, Mauricio", "affiliation": "Faculty of Science and Engineering, University of Groningen"},
+    {"name": "Barradas-Berglind, Jesús", "affiliation": "Faculty of Science and Engineering, University of Groningen"}
+  ],
+  "license": "MIT",
+  "keywords": ["aeroacoustics", "lattice Boltzmann", "large-eddy simulation", "Aztec death whistle", "skull whistle", "Helmholtz resonator", "roughness"]
+}

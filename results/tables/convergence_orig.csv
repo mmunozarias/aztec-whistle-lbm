@@ -1,0 +1,4 @@
+file,dx_mm,dp_Pa,window_ms,resolution_Hz,f0_sphere_Hz,f0_listener_Hz,p1_mean_Pa,p1_amp_Pa,listener_dB,Q_Lps,phase_p3_p1_deg,Uj_mps,St,f0_tone_Hz
+runs/dx1_dp2000/res_orig.npz,1.0,2000.0,15.0,67,350,375,71,0,63.8,0.164,-9,57.7,0.026,375
+runs/dx0.5_dp2000/res_orig.npz,0.5,2000.0,15.0,67,304,2279,695,80,106.4,0.279,-170,57.7,0.156,2279
+runs/dx0.25_dp2000/res_orig.npz,0.25,2000.0,15.0,67,900,2325,1136,121,111.5,0.336,-147,57.7,0.159,2325

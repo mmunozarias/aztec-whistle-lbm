@@ -1,0 +1,40 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper and the software as below."
+title: "aztec-whistle-lbm: 3D lattice Boltzmann simulation of an Aztec skull whistle"
+type: software
+version: "1.0"
+date-released: "2026-11-26"
+license: MIT
+repository-code: "https://github.com/mmunozarias/aztec-whistle-lbm"
+abstract: >-
+  Three-dimensional lattice Boltzmann large-eddy simulation of the airflow and sound of a
+  3D-printable Aztec skull-whistle replica, with grid-convergence, blowing-pressure and
+  sound-quality analyses, job scripts for an HPC cluster, and the figures and results of the
+  accompanying paper. The raw simulation output, the simulated sound and the explainer video are archived separately on Zenodo.
+keywords:
+  - aeroacoustics
+  - lattice Boltzmann
+  - large-eddy simulation
+  - Aztec death whistle
+  - Helmholtz resonator
+  - roughness
+authors:
+  - family-names: "Muñoz-Arias"
+    given-names: "Mauricio"
+    affiliation: "Faculty of Science and Engineering, University of Groningen"
+    email: "m.munoz.arias@rug.nl"
+  - family-names: "Barradas-Berglind"
+    given-names: "Jesús"
+    affiliation: "Faculty of Science and Engineering, University of Groningen"
+preferred-citation:
+  type: article
+  title: "Why the Aztec Death Whistle Screams: A Three-Dimensional Lattice Boltzmann Simulation of a Skull-Whistle Replica"
+  status: in-preparation
+  year: 2026
+  authors:
+    - family-names: "Muñoz-Arias"
+      given-names: "Mauricio"
+      affiliation: "Faculty of Science and Engineering, University of Groningen"
+    - family-names: "Barradas-Berglind"
+      given-names: "Jesús"
+      affiliation: "Faculty of Science and Engineering, University of Groningen"

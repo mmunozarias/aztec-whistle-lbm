@@ -1,0 +1,5 @@
+file,case,dx_mm,dp_Pa,window_ms,mod_res_Hz,f0_Hz,tonal_frac,env_depth,rough_depth,rough_frac,fmod_peak_Hz
+runs/dx0.25_dp1500_long/res_orig.npz,orig,0.25,1500.0,85.0,11.8,2276,0.323,0.383,0.214,0.311,146
+runs/dx0.25_dp2000_long/res_orig.npz,orig,0.25,2000.0,85.0,11.8,1156,0.38,0.306,0.141,0.211,182
+runs/dx0.5_dp1500_long/res_orig.npz,orig,0.5,1500.0,85.0,11.8,2082,0.722,0.554,0.47,0.72,96
+runs/dx0.5_dp2000_long/res_orig.npz,orig,0.5,2000.0,85.0,11.8,2309,0.372,0.617,0.367,0.354,185

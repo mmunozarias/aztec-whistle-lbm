@@ -1,0 +1,47 @@
+# LaTeX build files
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.lof
+*.lot
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+*.egg-info/
+
+# Input geometry: download it from Thingiverse 5148690
+code/input/
+*.stl
+*.obj
+
+# Simulation outputs (large)
+code/out/
+out/
+runs/
+*.npz
+*.npy
+*.mp4
+*.wav
+
+# OS and editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.zip
+
+# Recordings of the printed model are small and part of the paper: keep them
+!experiments/recordings/*.wav
+!results/sound/*.wav
