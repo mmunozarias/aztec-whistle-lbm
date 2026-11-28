@@ -8,8 +8,8 @@ Code, results and recordings for a study of how the Aztec skull ("death") whistl
 - **Code:** a 3D lattice Boltzmann large-eddy simulation (D3Q19, regularized BGK with a Smagorinsky model) that resolves the airflow and the sound together, with the real speed of sound and viscosity of air. In [`code/`](code/); archived on Zenodo, [doi:10.5281/zenodo.24629264](https://doi.org/10.5281/zenodo.24629264).
 - **Results:** every figure, number and table in the paper, in [`results/`](results/).
 - **Recordings:** audio of a 3D-printed model at 100 % and 125 % scale, with the analysis script, in [`experiments/`](experiments/).
-- **Raw simulation output, simulated sound and video:** archived on Zenodo (DOI to be added).
-- **Video:** an explainer of the results (link to be added).
+- **Video:** a 4-minute explainer of the results, on Zenodo: [doi:10.5281/zenodo.24629643](https://doi.org/10.5281/zenodo.24629643).
+- **Raw simulation output and simulated sound:** to be archived on Zenodo (DOI to be added).
 
 ## Main results
 
