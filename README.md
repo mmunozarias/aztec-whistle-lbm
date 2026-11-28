@@ -1,9 +1,11 @@
 # Aztec skull whistle: 3D lattice Boltzmann simulation
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24629264.svg)](https://doi.org/10.5281/zenodo.24629264)
+
 Code, results and recordings for a study of how the Aztec skull ("death") whistle makes its sound.
 
 - **Paper:** M. Muñoz-Arias and J. Barradas-Berglind, *Why the Aztec Death Whistle Screams: A Three-Dimensional Lattice Boltzmann Simulation of a Skull-Whistle Replica* (manuscript, 2026; link to be added).
-- **Code:** a 3D lattice Boltzmann large-eddy simulation (D3Q19, regularized BGK with a Smagorinsky model) that resolves the airflow and the sound together, with the real speed of sound and viscosity of air. In [`code/`](code/).
+- **Code:** a 3D lattice Boltzmann large-eddy simulation (D3Q19, regularized BGK with a Smagorinsky model) that resolves the airflow and the sound together, with the real speed of sound and viscosity of air. In [`code/`](code/); archived on Zenodo, [doi:10.5281/zenodo.24629264](https://doi.org/10.5281/zenodo.24629264).
 - **Results:** every figure, number and table in the paper, in [`results/`](results/).
 - **Recordings:** audio of a 3D-printed model at 100 % and 125 % scale, with the analysis script, in [`experiments/`](experiments/).
 - **Raw simulation output, simulated sound and video:** archived on Zenodo (DOI to be added).
@@ -112,6 +114,8 @@ Please cite the paper, and the software if you use the code. GitHub shows a "Cit
   title   = {aztec-whistle-lbm: 3D lattice Boltzmann simulation of an Aztec skull whistle},
   version = {1.1},
   year    = {2026},
+  publisher = {Zenodo},
+  doi     = {10.5281/zenodo.24629264},
   url     = {https://github.com/mmunozarias/aztec-whistle-lbm}
 }
 ```
