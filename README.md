@@ -9,7 +9,7 @@ Code, results and recordings for a study of how the Aztec skull ("death") whistl
 - **Results:** every figure, number and table in the paper, in [`results/`](results/).
 - **Recordings:** audio of a 3D-printed model at 100 % and 125 % scale, with the analysis script, in [`experiments/`](experiments/).
 - **Video:** a 4-minute explainer of the results, on Zenodo: [doi:10.5281/zenodo.24629643](https://doi.org/10.5281/zenodo.24629643).
-- **Raw simulation output and simulated sound:** to be archived on Zenodo (DOI to be added).
+- **Raw simulation output and simulated sound:** 18 GB on Zenodo, [doi:10.5281/zenodo.24631286](https://doi.org/10.5281/zenodo.24631286).
 
 ## Main results
 
@@ -89,7 +89,7 @@ python code/src/07_compare_runs.py runs/dx0.5_dp2000 runs/dx0.5_dp2000_ramp2ms r
 
 A ramp four times slower gives the same oscillation (tone within the 67 Hz resolution of the window, level at P5 +0.3 dB). In a box 30 mm larger on every side with a 30 mm layer, the level at P5 and the flow are unchanged and the amplitude in the sphere is 9 % lower.
 
-Instead of running the simulations, you can download the raw output of every run from Zenodo (DOI to be added) and unpack it into `runs/`.
+Instead of running the simulations, you can download the raw output of every run from Zenodo, [doi:10.5281/zenodo.24631286](https://doi.org/10.5281/zenodo.24631286), and unpack it into `runs/` (its README explains how).
 
 **Figures, numbers and tables** once the runs exist:
 
