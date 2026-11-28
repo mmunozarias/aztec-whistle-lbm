@@ -5,7 +5,7 @@ Model
     (--collision bgk and --cs switch these off, for the stability test of plain BGK)
   * molecular viscosity of air (1.5e-5 m2/s), speed of sound 343 m/s, rho 1.2 kg/m3
   * lattice speed of sound mapped to the real one, so Mach number and acoustics are physical
-  * pressure inlet inside the sealed mouthpiece, ramped to --dp over 0.5 ms
+  * pressure inlet inside the sealed mouthpiece, ramped to --dp over 0.5 ms (--ramp)
   * half-way bounce-back walls; sponge layer at the box edges absorbs outgoing sound
 Output <workdir>/res_<case>.npz: probe histories every step, mid-plane (x=0) and
 cross-plane (y=0) slices every ~21 microseconds, and snap_<case>.npy (final 3D field).
@@ -19,6 +19,8 @@ ap.add_argument('--dp', type=float, default=2000.0, help='blowing pressure [Pa]'
 ap.add_argument('--workdir', default='out')
 ap.add_argument('--collision', default='reg', choices=['reg', 'bgk'],
                 help='reg: regularized BGK (all runs of the paper); bgk: plain BGK, for the stability test')
+ap.add_argument('--ramp', type=float, default=0.5e-3, help='time over which the blowing pressure rises from zero [s]')
+ap.add_argument('--sponge', type=float, default=6.0, help='thickness of the absorbing layer [mm]')
 ap.add_argument('--cs', type=float, default=0.17, help='Smagorinsky constant; 0 switches the eddy viscosity off')
 a = ap.parse_args()
 
@@ -27,7 +29,7 @@ x, y, z = g['x'], g['y'], g['z']; dx = float(g['dx'])
 c_phys, rho0, cs, nu_air = 343.0, 1.2, 1 / np.sqrt(3), 1.5e-5
 dt = dx * 1e-3 * cs / c_phys; ufac = c_phys / cs; pfac = rho0 * c_phys**2
 tau0 = 0.5 + 3 * nu_air * dt / (dx * 1e-3)**2; Csm = a.cs; BGK = a.collision == 'bgk'
-drho = a.dp / pfac; nsteps = int(a.time / dt); ramp = int(0.5e-3 / dt); save_every = max(1, round(21e-6 / dt))
+drho = a.dp / pfac; nsteps = int(a.time / dt); ramp = max(1, int(a.ramp / dt)); save_every = max(1, round(21e-6 / dt))
 print(f'{a.case}: grid {solid.shape}, dt={dt:.3e} s, {nsteps} steps, tau0={tau0:.6f}, collision={a.collision}, Cs={Csm}', flush=True)
 
 c = np.array([[0,0,0],[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1],[1,1,0],[-1,-1,0],[1,-1,0],[-1,1,0],
@@ -39,7 +41,7 @@ cx, cy, cz = c[:, 0].copy(), c[:, 1].copy(), c[:, 2].copy()
 # Thickness is kept at 6 mm. The per-step relaxation strength scales with dx (same damping rate per
 # unit physical time, since dt is proportional to dx) and the added relaxation time scales so that the
 # added physical viscosity is also the same. At dx = 0.5 mm this reproduces the original layer exactly.
-SPONGE_MM, DX_REF = 6.0, 0.5
+SPONGE_MM, DX_REF = a.sponge, 0.5
 sp = max(1, int(round(SPONGE_MM / dx))); I, J, K = np.indices(solid.shape)
 dist = np.minimum.reduce([I, solid.shape[0]-1-I, J, solid.shape[1]-1-J, K, solid.shape[2]-1-K]).astype(np.float32)
 sponge = np.minimum(1.0, (np.clip((sp - dist) / sp, 0, 1)**2) * (dx / DX_REF)).astype(np.float32); del I, J, K, dist

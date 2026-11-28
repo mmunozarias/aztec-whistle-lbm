@@ -77,6 +77,16 @@ done
 
 Without the eddy viscosity both collisions diverge within 2 ms; plain BGK with the eddy viscosity stays stable but does not produce the self-sustained tone.
 
+**Start-up and reflection checks (Section IV-C of the paper).** `02_simulate.py` also takes `--ramp` (time over which the blowing pressure rises, default 0.5 ms) and `--sponge` (thickness of the absorbing layer, default 6 mm); `01_geometry.py` takes `--margin` (extra air on every side of the box, default 0 mm). Passed through `SIMARGS` and `GEOMARGS`:
+
+```bash
+sbatch -c 16 --mem=8G  -t 01:30:00 --export=ALL,CASE=orig,DX=0.5,DP=2000,T=20e-3,TAG=_ramp2ms,SIMARGS="--ramp 2e-3" code/hpc/habrok_run.sh
+sbatch -c 32 --mem=32G -t 06:00:00 --export=ALL,CASE=orig,DX=0.5,DP=2000,T=20e-3,TAG=_bigbox,GEOMARGS="--margin 30",SIMARGS="--sponge 30" code/hpc/habrok_run.sh
+python code/src/07_compare_runs.py runs/dx0.5_dp2000 runs/dx0.5_dp2000_ramp2ms runs/dx0.5_dp2000_bigbox --t0 5e-3 --t1 20e-3
+```
+
+A ramp four times slower gives the same oscillation (tone within the 67 Hz resolution of the window, level at P5 +0.3 dB). In a box 30 mm larger on every side with a 30 mm layer, the level at P5 and the flow are unchanged and the amplitude in the sphere is 9 % lower.
+
 Instead of running the simulations, you can download the raw output of every run from Zenodo (DOI to be added) and unpack it into `runs/`.
 
 **Figures, numbers and tables** once the runs exist:
@@ -100,7 +110,7 @@ Please cite the paper, and the software if you use the code. GitHub shows a "Cit
 @software{aztec_whistle_lbm,
   author  = {Mu{\~n}oz-Arias, Mauricio and Barradas-Berglind, Jes{\'u}s},
   title   = {aztec-whistle-lbm: 3D lattice Boltzmann simulation of an Aztec skull whistle},
-  version = {1.0},
+  version = {1.1},
   year    = {2026},
   url     = {https://github.com/mmunozarias/aztec-whistle-lbm}
 }

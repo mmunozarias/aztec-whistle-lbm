@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software, please cite the paper and the software as below."
 title: "aztec-whistle-lbm: 3D lattice Boltzmann simulation of an Aztec skull whistle"
 type: software
-version: "1.0"
-date-released: "2026-11-26"
+version: "1.1"
+date-released: "2026-11-28"
 license: MIT
 repository-code: "https://github.com/mmunozarias/aztec-whistle-lbm"
 abstract: >-

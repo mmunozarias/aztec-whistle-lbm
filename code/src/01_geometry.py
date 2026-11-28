@@ -15,12 +15,14 @@ ap = argparse.ArgumentParser()
 ap.add_argument('--stl', required=True)
 ap.add_argument('--dx', type=float, default=0.5, help='grid spacing [mm]')
 ap.add_argument('--workdir', default='out')
+ap.add_argument('--margin', type=float, default=0.0, help='extra air on every side of the box [mm], for the reflection check')
 a = ap.parse_args()
 import os; os.makedirs(a.workdir, exist_ok=True)
 
 m = trimesh.load(a.stl, force='mesh')
 dx = a.dx
-x = np.arange(-30, 30 + 1e-9, dx); y = np.arange(-62, 62 + 1e-9, dx); z = np.arange(-12, 64 + 1e-9, dx)
+M = a.margin
+x = np.arange(-30 - M, 30 + M + 1e-9, dx); y = np.arange(-62 - M, 62 + M + 1e-9, dx); z = np.arange(-12 - M, 64 + M + 1e-9, dx)
 G = np.stack(np.meshgrid(x, y, z, indexing='ij'), -1).reshape(-1, 3)
 t = time.time()
 # generalised winding number: robust to the small cracks in this mesh
