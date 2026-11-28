@@ -67,6 +67,16 @@ Each run writes `runs/dx<DX>_dp<DP><TAG>/res_<case>.npz`. The paper uses grids o
 
 The job scripts load the Hábrók modules and a virtual environment at `~/venvs/whistle`; adapt those lines to your cluster.
 
+**Stability tests (Section IV-B of the paper).** `02_simulate.py` takes `--collision bgk` (plain BGK instead of the regularized collision) and `--cs` (Smagorinsky constant; `--cs 0` switches the eddy viscosity off). The defaults are the settings of every run in the paper. The three test runs:
+
+```bash
+for v in "_bgk|--collision bgk --cs 0" "_bgk_smag|--collision bgk --cs 0.17" "_reg_nosmag|--collision reg --cs 0"; do
+  sbatch -c 16 --mem=8G -t 01:30:00 --export=ALL,CASE=orig,DX=0.5,DP=2000,T=20e-3,TAG="${v%%|*}",SIMARGS="${v#*|}" code/hpc/habrok_run.sh
+done
+```
+
+Without the eddy viscosity both collisions diverge within 2 ms; plain BGK with the eddy viscosity stays stable but does not produce the self-sustained tone.
+
 Instead of running the simulations, you can download the raw output of every run from Zenodo (DOI to be added) and unpack it into `runs/`.
 
 **Figures, numbers and tables** once the runs exist:

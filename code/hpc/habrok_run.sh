@@ -1,5 +1,6 @@
 #!/bin/bash
-# General run: set CASE, DX [mm], DP [Pa], T [s] via --export. Example:
+# General run: set CASE, DX [mm], DP [Pa], T [s] via --export; optional TAG (run folder suffix) and
+# SIMARGS (extra options for 02_simulate.py, e.g. SIMARGS="--collision bgk --cs 0"). Example:
 #   sbatch -c 16 --mem=8G -t 03:00:00 --export=ALL,CASE=sealed,DX=0.5,DP=2000,T=40e-3 code/hpc/habrok_run.sh
 #SBATCH --job-name=whistle-run
 #SBATCH --partition=regular
@@ -19,7 +20,7 @@ export NUMBA_NUM_THREADS=$SLURM_CPUS_PER_TASK OMP_NUM_THREADS=$SLURM_CPUS_PER_TA
 CASE=${CASE:?}; DX=${DX:?}; DP=${DP:?}; T=${T:?}
 STL=${STL:-code/input/_BothDeathwhistlefile98.stl}
 W=runs/dx${DX}_dp${DP}${TAG:-}; mkdir -p "$W"
-echo "case=$CASE dx=$DX dp=$DP T=$T cores=$SLURM_CPUS_PER_TASK commit=$(git rev-parse --short HEAD) start=$(date)"
+echo "case=$CASE dx=$DX dp=$DP T=$T simargs=${SIMARGS:-none} cores=$SLURM_CPUS_PER_TASK commit=$(git rev-parse --short HEAD) start=$(date)"
 [ -f "$W/geom.npz" ] || python code/src/01_geometry.py --stl "$STL" --dx $DX --workdir "$W"
-python code/src/02_simulate.py --case $CASE --dp $DP --time $T --workdir "$W"
+python code/src/02_simulate.py --case $CASE --dp $DP --time $T --workdir "$W" ${SIMARGS:-}
 echo "done $(date)"

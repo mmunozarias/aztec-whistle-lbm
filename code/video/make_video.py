@@ -105,6 +105,7 @@ def nl(s, wrap): return len(textwrap.wrap(s, wrap)) if wrap else s.count('\n') +
 def T(fig, x, y, s, size=30, color=FG, weight='normal', wrap=None, ha='left', va='top', alpha=1.0, **kw):
     """Text at pixel position (x, y) of a 1920x1080 frame, measured from the top left."""
     if wrap: s = '\n'.join(textwrap.fill(p, wrap) for p in s.split('\n'))
+    s = s.replace(' ', ' ')   # no-break space only steers the wrapping; Latin Modern draws it wider than a space
     if weight == 'bold' and not REAL_BOLD:
         kw.setdefault('path_effects', [pe.withStroke(linewidth=max(0.6, size * 0.045) * A.scale, foreground=color)]); weight = 'normal'
     return fig.text(x / 1920, 1 - y / 1080, s, fontsize=size, color=color, fontweight=weight, ha=ha, va=va, alpha=alpha,
@@ -493,7 +494,7 @@ def s05_method(mv):
         ax.set_xlabel('pitch of the whistle [kHz]', fontsize=20); [ax.spines[k].set_visible(False) for k in ('top', 'right')]
         T(fig, 1080, 150, 'Pitch on each grid', 28, FG, 'bold')
         if nb >= 3 and grid[1][1] and grid[2][1]:
-            TB(fig, 1080, 870, f'The two finer grids agree within {abs(grid[2][1]-grid[1][1])/grid[2][1]*100:.0f} %.', 28, FG, width=760)
+            TB(fig, 1080, 870, f'The two finer grids agree within {abs(grid[2][1]-grid[1][1])/grid[2][1]*100:.0f}\u00a0%.', 28, FG, width=760)
         img = grab(fig); plt.close(fig); return img
     st = [draw(n, nb) for n, nb in [(0, 0), (1, 0), (2, 0), (3, 1), (3, 2), (3, 3), (4, 3)]]
     scene(mv, 17, st, [0, 0.5, 3.0, 6.5, 8.0, 9.5, 12.5], name='Method')
@@ -653,10 +654,10 @@ def s10_scary(mv):
     dur = 19; mv.sound(loop(SND_MAIN, dur - 1.5), mv.t + 1.0, GAIN)
     x = SND_MAIN; nper = int(0.004 * SR); fs_, ts_, Sg = spectrogram(x, fs=SR, nperseg=nper, noverlap=nper * 7 // 8); keep = fs_ <= 6000
     Ld = 10 * np.log10(Sg[keep] + 1e-20)
-    pts = [f'Pitched noise: only about {round(tonal*100, -1):.0f} % of the sound is in the tone and its overtones.',
+    pts = ['Pitched noise: the tone and its overtones carry only 22 to 37\u00a0% of the sound.',
            'Two bands an octave apart, like a voice that cracks.',
-           f'The loudness wobbles by about {round(env*100, -1):.0f} %: the sound is rough.',
-           'Rough, noisy and unstable: the same acoustic features as human screams, which our brains treat as an alarm.']
+           'Its strength rises and falls by 31 to 62\u00a0% of its average: the sound is rough.',
+           'Rough, noisy and unstable: features also found in human screams, which our brains treat as an alarm.']
     def draw(n):
         fig = new_fig(); header(fig, 10, 'Why it sounds like a scream')
         ax = AX(fig, 1080, 160, 780, 620); ax.pcolormesh(ts_ * 1e3, fs_[keep] / 1e3, Ld, shading='auto', cmap='magma', vmin=Ld.max() - 45, vmax=Ld.max(), rasterized=True)
@@ -693,8 +694,8 @@ def s12_experts(mv):
                         f'Grids of 1, 0.5 and 0.25 mm, up to {ncell/1e6:.1f} million cells. Blowing pressure 0.5 to 4 kPa. '
                         'Up to 105 ms of simulated time.', 28) + 50
         if n:
-            tile(fig, 90, yy, 1740, 'Limits', 'A modern replica, not an original whistle. The pitch is grid-converged; the loudness, the flow rate '
-                            'and the roughness are not yet. The printed whistle was blown by mouth at unknown pressure, '
+            tile(fig, 90, yy, 1740, 'Limits', 'A modern replica, not an original whistle. The pitch agrees within 2\u00a0% between the two finest grids; the sound level, '
+                            'the flow rate and the roughness have not converged yet. The printed whistle was blown by mouth at unknown pressure, '
                             'so that comparison is qualitative.', 28, red=False)
         img = grab(fig); plt.close(fig); return img
     scene(mv, 13, [draw(0), draw(1)], [0, 5.0], name='Experts')

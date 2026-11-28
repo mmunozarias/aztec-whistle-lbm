@@ -20,6 +20,8 @@ Run the scripts from the repository root; each one lists its options with `--hel
 
 Probes: P1 sphere centre, P2 duct, P3 top of the gap, P4 exit toward the mouth, P5 near-mouth probe (less than 1 cm in front of the mouth).
 
+The video uses the Latin Modern Sans font (`lmsans10-regular.otf` and `lmsans10-bold.otf`, part of TeX Live and MiKTeX). Put them in `~/.local/share/fonts` or point `LMSANS_DIR` to them; without them the script falls back to `cmss10`, which lacks accented letters.
+
 The absorbing layer at the domain boundary is 6 mm thick on every grid. The 1 mm grid is too coarse for the whistle to oscillate; use it only to test the installation.
 
 Expected values for the reference runs are in [`../results/tables/`](../results/tables/) and [`../results/paper_figures/numbers.json`](../results/paper_figures/numbers.json).

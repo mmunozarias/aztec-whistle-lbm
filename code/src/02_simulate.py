@@ -2,6 +2,7 @@
 
 Model
   * regularised BGK collision + Smagorinsky sub-grid model (Cs = 0.17)
+    (--collision bgk and --cs switch these off, for the stability test of plain BGK)
   * molecular viscosity of air (1.5e-5 m2/s), speed of sound 343 m/s, rho 1.2 kg/m3
   * lattice speed of sound mapped to the real one, so Mach number and acoustics are physical
   * pressure inlet inside the sealed mouthpiece, ramped to --dp over 0.5 ms
@@ -16,15 +17,18 @@ ap.add_argument('--case', default='orig', choices=['orig', 'sealed'])
 ap.add_argument('--time', type=float, default=10e-3, help='simulated time [s]')
 ap.add_argument('--dp', type=float, default=2000.0, help='blowing pressure [Pa]')
 ap.add_argument('--workdir', default='out')
+ap.add_argument('--collision', default='reg', choices=['reg', 'bgk'],
+                help='reg: regularized BGK (all runs of the paper); bgk: plain BGK, for the stability test')
+ap.add_argument('--cs', type=float, default=0.17, help='Smagorinsky constant; 0 switches the eddy viscosity off')
 a = ap.parse_args()
 
 g = np.load(f'{a.workdir}/geom.npz'); solid = np.ascontiguousarray(g[a.case]); inlet = g['inlet']
 x, y, z = g['x'], g['y'], g['z']; dx = float(g['dx'])
 c_phys, rho0, cs, nu_air = 343.0, 1.2, 1 / np.sqrt(3), 1.5e-5
 dt = dx * 1e-3 * cs / c_phys; ufac = c_phys / cs; pfac = rho0 * c_phys**2
-tau0 = 0.5 + 3 * nu_air * dt / (dx * 1e-3)**2; Csm = 0.17
+tau0 = 0.5 + 3 * nu_air * dt / (dx * 1e-3)**2; Csm = a.cs; BGK = a.collision == 'bgk'
 drho = a.dp / pfac; nsteps = int(a.time / dt); ramp = int(0.5e-3 / dt); save_every = max(1, round(21e-6 / dt))
-print(f'{a.case}: grid {solid.shape}, dt={dt:.3e} s, {nsteps} steps, tau0={tau0:.6f}', flush=True)
+print(f'{a.case}: grid {solid.shape}, dt={dt:.3e} s, {nsteps} steps, tau0={tau0:.6f}, collision={a.collision}, Cs={Csm}', flush=True)
 
 c = np.array([[0,0,0],[1,0,0],[-1,0,0],[0,1,0],[0,-1,0],[0,0,1],[0,0,-1],[1,1,0],[-1,-1,0],[1,-1,0],[-1,1,0],
               [1,0,1],[-1,0,-1],[1,0,-1],[-1,0,1],[0,1,1],[0,-1,-1],[0,1,-1],[0,-1,1]])
@@ -43,7 +47,7 @@ sp_visc = np.float32(0.5 * (DX_REF / dx)**2)     # extra tau = sp_visc * sponge 
 print(f'sponge: {sp} cells = {sp*dx:.1f} mm, peak strength {sponge.max():.3f}, extra-tau factor {sp_visc:.3f}', flush=True)
 
 @nb.njit(parallel=True, fastmath=True, cache=True)
-def step(f, fn, solid, inlet, sponge, sp_visc, rho_in, rho, ux, uy, uz, tau0, Csm):
+def step(f, fn, solid, inlet, sponge, sp_visc, rho_in, rho, ux, uy, uz, tau0, Csm, bgk):
     NX, NY, NZ = solid.shape
     for i in nb.prange(NX):
         fl = np.empty(19, np.float32); feq = np.empty(19, np.float32)
@@ -76,10 +80,14 @@ def step(f, fn, solid, inlet, sponge, sp_visc, rho_in, rho, ux, uy, uz, tau0, Cs
                 te = 0.5*(tau0 + np.sqrt(tau0*tau0 + 18*np.sqrt(2.0)*Csm*Csm*Q/r)) + sg*sp_visc   # Smagorinsky + sponge viscosity
                 om = 1 - 1/te
                 if isin: om = 0.0
-                for q in range(19):                                   # regularised collision
-                    aa = cx[q]*cx[q]-1/3; bb = cy[q]*cy[q]-1/3; cc = cz[q]*cz[q]-1/3
-                    f1 = w[q]*4.5*(aa*Pxx + bb*Pyy + cc*Pzz + 2*(cx[q]*cy[q]*Pxy + cx[q]*cz[q]*Pxz + cy[q]*cz[q]*Pyz))
-                    fn[q, i, j, k] = feq[q] + om*f1
+                if bgk:
+                    for q in range(19):                               # plain BGK collision (stability test only)
+                        fn[q, i, j, k] = feq[q] + om*(fl[q] - feq[q])
+                else:
+                    for q in range(19):                               # regularised collision
+                        aa = cx[q]*cx[q]-1/3; bb = cy[q]*cy[q]-1/3; cc = cz[q]*cz[q]-1/3
+                        f1 = w[q]*4.5*(aa*Pxx + bb*Pyy + cc*Pzz + 2*(cx[q]*cy[q]*Pxy + cx[q]*cz[q]*Pxz + cy[q]*cz[q]*Pyz))
+                        fn[q, i, j, k] = feq[q] + om*f1
                 rho[i, j, k] = r; ux[i, j, k] = u; uy[i, j, k] = v; uz[i, j, k] = ww
 
 f = np.empty((19,) + solid.shape, np.float32); f[:] = w[:, None, None, None]; fn = f.copy()
@@ -105,7 +113,7 @@ def save(nmax):
         x=x, y=y, z=z, names=np.array(list(P.keys())), dp=a.dp)
 for s_ in range(nsteps):
     rin = np.float32(1 + drho * min(1.0, s_ / ramp))
-    step(f, fn, solid, inlet, sponge, sp_visc, rin, rho, ux, uy, uz, np.float32(tau0), np.float32(Csm)); f, fn = fn, f
+    step(f, fn, solid, inlet, sponge, sp_visc, rin, rho, ux, uy, uz, np.float32(tau0), np.float32(Csm), BGK); f, fn = fn, f
     for q, v in enumerate(P.values()): hist[s_, q] = (rho[v] - 1) * pfac          # Pa above ambient
     hist[s_, -1] = (ux[ii]*nin[0] + uy[ii]*nin[1] + uz[ii]*nin[2]).sum() * ufac * (dx*1e-3)**2 * 1e3  # duct flow [L/s]
     if s_ % save_every == 0:
